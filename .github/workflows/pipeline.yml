@@ -26,6 +26,6 @@ jobs:
           with:
             install: false
             command: npm run test:e2e
+            build: npm run build
             start: npm run start-prod
-            browser: chrome
             wait-on: http://localhost:5000
