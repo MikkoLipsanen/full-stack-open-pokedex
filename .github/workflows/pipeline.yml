@@ -23,10 +23,8 @@ jobs:
           run: npm test
         - name: e2e tests
           uses: cypress-io/github-action@v6
-          env:
-            DEBUG: '@cypress/github-action'
+          timeout-minutes: 10
           with:
-            install: false
             command: npm run test:e2e
             start: npm run start-prod
             wait-on: http://localhost:5000
