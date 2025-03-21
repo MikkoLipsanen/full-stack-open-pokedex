@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 const { test, describe, expect, beforeEach } = require('@playwright/test')
 
 describe('Pokedex', () => {
