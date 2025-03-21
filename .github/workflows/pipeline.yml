@@ -25,7 +25,7 @@ jobs:
           uses: cypress-io/github-action@v6
           timeout-minutes: 15
           with:
-            build: npx cypress info
+            build: npm run build
             install-command: npm install --legacy-peer-deps
             command: npm run test:e2e
             start: npm run start-prod
