@@ -51,5 +51,6 @@ module.exports = {
     ],
     'no-console': 'error',
     'react/prop-types': 0
-  }
+  },
+  'ignorePatterns': ['webpack.config.js', 'node_modules/', 'dist/*'],
 }
