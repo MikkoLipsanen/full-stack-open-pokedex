@@ -35,6 +35,7 @@ jobs:
             path: playwright-report/
             retention-days: 30
         - name: Trigger deployment
+          if: ${{ github.event_name == 'push' }}
           uses: sws2apps/render-deployment@main 
           with:
                 serviceId: ${{ secrets.RENDER_SERVICE_ID }}
