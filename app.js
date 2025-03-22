@@ -13,8 +13,6 @@ app.listen(PORT, () => {
   /* eslint-enable no-console */
 })
 
-app.get('/health', (req, res) => {
-  // eslint-disable-next-line no-constant-condition
-  if (true) throw('error...  ')
+app.get('/health', (_req, res) => {
   res.send('ok')
 })
