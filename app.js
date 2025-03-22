@@ -12,7 +12,7 @@ app.listen(PORT, () => {
   console.log(`server started on port ${PORT}`)
   /* eslint-enable no-console */
 })
-// endpoint for health checks
+// endpoint for health checks, output is 'ok'
 app.get('/health', (_req, res) => {
   res.send('ok')
 })
