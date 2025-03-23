@@ -49,16 +49,16 @@ jobs:
           if: ${{ success() }}
           with:
             webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
-            color: '#008000'
-            message: A new version of Pokedex was deployed!
+            color: "#008000"
+            message: "A new version of Pokedex was deployed!"
 
         - name: Build failed
           uses: appleboy/discord-action@v1.2.0
           if: ${{ failure() }}
           with:
             webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
-            color: '#FF5349'
-            message: Commit ${{ github.event.head_commit.url }} caused the build to fail.
+            color: "#FF5349"
+            message: "Commit ${{ github.event.head_commit.url }} caused the build to fail."
 
     tag_release:
         needs: [deployment_pipeline]
