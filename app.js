@@ -5,7 +5,7 @@ const app = express()
 // get the port from env variable
 const PORT = process.env.PORT || 5000
 
-// middleware for serving static files
+// great middleware for serving static files
 app.use(express.static('dist'))
 
 app.listen(PORT, () => {
