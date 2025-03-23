@@ -46,10 +46,10 @@ jobs:
     tag_release:
         needs: [simple_deployment_pipeline]
         runs-on: ubuntu-20.04
+        if: ${{ github.env.SKIP_CONDITION == 'false' }}
         steps:
         - uses: actions/checkout@v4
         - name: Bump version and push tag
-          if: ${{ env.SKIP_CONDITION == 'false' }}
           uses: anothrNick/github-tag-action@1.71.0
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
