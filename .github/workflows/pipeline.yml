@@ -45,16 +45,16 @@ jobs:
             multipleDeployment: false 
 
         - name: Build succeeded
-          uses: rjstone/discord-webhook-notify@v1
           if: success()
+          uses: rjstone/discord-webhook-notify@v1
           with:
             severity: info
             details: Build succeeded!
             webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
 
         - name: Build failed
-          uses: appleboy/discord-action@v1.2.0
           if: ${{ failure() }}
+          uses: appleboy/discord-action@v1.2.0
           with:
             webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
             color: '#FF5349'
