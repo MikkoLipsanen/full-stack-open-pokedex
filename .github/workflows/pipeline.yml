@@ -45,12 +45,12 @@ jobs:
             multipleDeployment: false 
 
         - name: Build succeeded
-          uses: appleboy/discord-action@v1.2.0
-          if: ${{ success() }}
+          uses: rjstone/discord-webhook-notify@v1
+          if: success()
           with:
-            webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
-            color: '#008000'
-            message: A new version of Pokedex was deployed!
+            severity: info
+            details: Build succeeded!
+            webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
 
         - name: Build failed
           uses: appleboy/discord-action@v1.2.0
