@@ -2,6 +2,7 @@ name: Deployment pipeline
 
 env: 
     SKIP_CONDITION: ${{ contains(join(github.event.commits.*.message, ', '), '#skip') || github.event_name != 'push' }}
+    WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
 on:
   push:
     branches:
@@ -43,14 +44,17 @@ jobs:
             serviceId: ${{ secrets.RENDER_SERVICE_ID }}
             apiKey: ${{ secrets.RENDER_API_KEY }}
             multipleDeployment: false 
+        
+        - name: Webhook
+          run: echo "$WEBHOOK"
 
         - name: Build succeeded
           if: ${{ success() }}
-          uses: rjstone/discord-webhook-notify@v1
+          uses: appleboy/discord-action@v1.2.0
           with:
-            severity: info
-            details: Build succeeded!
-            webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+            webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
+            color: '#008000'
+            message: Build succeeded.
 
         - name: Build failed
           if: ${{ failure() }}
