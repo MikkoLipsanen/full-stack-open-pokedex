@@ -1,5 +1,7 @@
 name: Deployment pipeline
 
+env: 
+    SKIP_CONDITION: ${{ contains(join(github.event.commits.*.message, ', '), '#skip') || github.event_name != 'push' }}
 on:
   push:
     branches:
@@ -35,7 +37,7 @@ jobs:
             path: playwright-report/
             retention-days: 30
         - name: Trigger deployment
-          if: ${{ github.event_name == 'push' }}
+          if: ${{ env.SKIP_CONDITION == 'false' }}
           uses: sws2apps/render-deployment@main 
           with:
                 serviceId: ${{ secrets.RENDER_SERVICE_ID }}
@@ -47,7 +49,7 @@ jobs:
         steps:
         - uses: actions/checkout@v4
         - name: Bump version and push tag
-          if: ${{ github.event_name == 'push' }}
+          if: ${{ env.SKIP_CONDITION == 'false' }}
           uses: anothrNick/github-tag-action@1.71.0
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
