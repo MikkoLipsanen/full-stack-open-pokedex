@@ -45,24 +45,21 @@ jobs:
             apiKey: ${{ secrets.RENDER_API_KEY }}
             multipleDeployment: false 
         
-        - name: Webhook
-          run: echo "$WEBHOOK"
+        #- name: Build succeeded
+        #  if: ${{ success() }}
+        #  uses: appleboy/discord-action@v1.2.0
+        #  with:
+        #    webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
+        #    color: '#008000'
+        #    message: Build succeeded.
 
-        - name: Build succeeded
-          if: ${{ success() }}
-          uses: appleboy/discord-action@v1.2.0
-          with:
-            webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
-            color: '#008000'
-            message: Build succeeded.
-
-        - name: Build failed
-          if: ${{ failure() }}
-          uses: appleboy/discord-action@v1.2.0
-          with:
-            webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
-            color: '#FF5349'
-            message: Commit ${{ github.event.head_commit.url }} caused the build to fail.
+        #- name: Build failed
+        #  if: ${{ failure() }}
+        #  uses: appleboy/discord-action@v1.2.0
+        #  with:
+        #    webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
+        #    color: '#FF5349'
+        #    message: Commit ${{ github.event.head_commit.url }} caused the build to fail.
 
     tag_release:
         needs: [deployment_pipeline]
